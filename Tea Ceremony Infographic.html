@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maslenitsa: Russian Cultural Communication</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 30%, #DC143C 70%, #8B0000 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 5px solid #FFD700;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            color: #DC143C;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            color: #FF6B35;
+            font-style: italic;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 8px solid #FFD700;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: #8B0000;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FF6B35;
+            padding-bottom: 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #DC143C 0%, #FF6B35 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            border: 3px solid #FFD700;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .week-card {
+            background: linear-gradient(45deg, #FFD700, #FFF8DC);
+            border: 3px solid #FF6B35;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .week-card:hover {
+            background: linear-gradient(45deg, #FF6B35, #FFD700);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .week-title {
+            font-size: 1.4em;
+            color: #8B0000;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .week-card:hover .week-title {
+            color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFD700, #DC143C);
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background: linear-gradient(45deg, #FFF8DC, #FFFACD);
+            padding: 20px;
+            border-radius: 10px;
+            width: 45%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #FFD700;
+        }
+        
+        .timeline-date {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .pancake-icon {
+            font-size: 4em;
+            text-align: center;
+            margin: 20px 0;
+            opacity: 0.8;
+        }
+        
+        .cultural-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .element-card {
+            background: linear-gradient(45deg, #ffffff, #FFF8DC);
+            border: 2px solid #FF6B35;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .element-card:hover {
+            background: linear-gradient(45deg, #FF6B35, #DC143C);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .element-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 3px solid #FFD700;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #DC143C 0%, #FF6B35 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .maslenitsa-doll {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #FFD700, #FF6B35);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 40px !important;
+            }
+        }
+        
+        .blini-animation {
+            animation: rotate 4s infinite linear;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥞 Масленица</h1>
+            <p class="subtitle">Russian Butter Week: Cultural Communication Through Celebration</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Festival by the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Years of Tradition</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Days of Celebration</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">144M</span>
+                    <span class="stat-label">Russians Participate</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2024</span>
+                    <span class="stat-label">March 11-17 This Year</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">The Seven Days of Maslenitsa</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">Monday - Встреча (Meeting)</div>
+                    <p>Communities gather to build snow mountains and welcome Maslenitsa. The effigy is constructed, symbolizing winter's end and spring's arrival.</p>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Tuesday - Заигрыши (Games Begin)</div>
+                    <p>Traditional matchmaking day! Young people engage in sledding, snowball fights, and courtship rituals through playful competition.</p>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Wednesday - Лакомка (Sweet Tooth)</div>
+                    <p>Mothers-in-law invite sons-in-law for blini feasts. This day strengthens family bonds and demonstrates hospitality customs.</p>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Thursday - Разгул (Wide Thursday)</div>
+                    <p>Peak celebration day! Public festivities include troika rides, folk performances, and massive community blini consumption.</p>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Friday - Тёщины Вечерки (Mother-in-Law's Evening)</div>
+                    <p>Role reversal day - sons-in-law honor mothers-in-law with elaborate blini dinners, reinforcing reciprocal family relationships.</p>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Saturday - Золовкины Посиделки (Sister-in-Law's Gathering)</div>
+                    <p>Extended family connections celebrated through visits between sisters-in-law, strengthening broader kinship networks.</p>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Sunday - Прощёное Воскресенье (Forgiveness Sunday)</div>
+                    <p>Maslenitsa effigy burned in massive bonfire. Communities practice ritual forgiveness before Lent begins.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Historical Evolution</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Pre-988 CE</div>
+                        <p><strong>Pagan Origins:</strong> Ancient Slavic spring equinox celebration honoring Yarilo (sun god) and fertility rituals for agricultural success.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">10th-16th Century</div>
+                        <p><strong>Christian Adaptation:</strong> Orthodox Church integrates pagan festival as <span class="highlight">Cheese Week</span> before Lent, transforming meanings while preserving traditions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">17th-19th Century</div>
+                        <p><strong>Imperial Codification:</strong> Peter the Great and successors formalize Maslenitsa as state celebration, spreading unified customs across the Russian Empire.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1917-1991</div>
+                        <p><strong>Soviet Transformation:</strong> Communist regime removes religious elements while maintaining secular folk festival aspects for cultural continuity.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1991-Present</div>
+                        <p><strong>Post-Soviet Revival:</strong> Full restoration of religious and cultural significance, now celebrated as UNESCO-recognized cultural heritage.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Cultural Communication Elements</h2>
+            <div class="cultural-elements">
+                <div class="element-card">
+                    <div class="element-icon blini-animation">🥞</div>
+                    <h3>Blini Symbolism</h3>
+                    <p>Round pancakes represent the sun, communicating hope for spring's return</p>
+                </div>
+                <div class="element-card">
+                    <div class="element-icon">🔥</div>
+                    <h3>Ritual Burning</h3>
+                    <p>Effigy destruction communicates collective release from winter hardships</p>
+                </div>
+                <div class="element-card">
+                    <div class="element-icon">🤝</div>
+                    <h3>Forgiveness Custom</h3>
+                    <p>"Forgive me" ritual reinforces community harmony and Orthodox values</p>
+                </div>
+                <div class="element-card">
+                    <div class="element-icon">🎭</div>
+                    <h3>Folk Performance</h3>
+                    <p>Traditional songs and dances preserve cultural memory and identity</p>
+                </div>
+                <div class="element-card">
+                    <div class="element-icon">🏠</div>
+                    <h3>Hospitality Rituals</h3>
+                    <p>Elaborate hosting demonstrates Russian values of generosity and warmth</p>
+                </div>
+                <div class="element-card">
+                    <div class="element-icon">❄️</div>
+                    <h3>Seasonal Transition</h3>
+                    <p>Collective celebration helps communities cope with harsh climate cycles</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Modern Cultural Impact</h2>
+            <div class="maslenitsa-doll">🪆</div>
+            <p>Maslenitsa serves as a powerful vehicle for <span class="highlight">Russian cultural communication</span> both domestically and internationally. The festival demonstrates how pre-Christian traditions can coexist with Orthodox Christianity, creating a uniquely Russian synthesis that communicates cultural resilience and adaptability.</p>
+            
+            <div class="stats-grid" style="margin-top: 20px;">
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Countries Celebrate Russian Diaspora</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500K</span>
+                    <span class="stat-label">Annual Blini Consumed (Moscow alone)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">UNESCO Cultural Heritage Sites Feature Maslenitsa</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">of Russians Participate Annually</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Cultural Communication Insight:</strong> Maslenitsa demonstrates how Russian culture communicates complex values - community solidarity, family hierarchy, seasonal adaptation, and spiritual preparation - through participatory ritual, shared cuisine, and collective celebration that transcends social and economic boundaries.</p>
+        </div>
+    </div>
+</body>
+</html>
