@@ -638,7 +638,7 @@
                     <div class="equals-sign">=</div>
                     
                     <div class="sun-image">
-                        <div class="sun-visual">
+                        <div class="sun-visual" style="overflow: visible; position: relative;"></div>
                             <div class="sun-rays">
                                 <div class="ray"></div>
                                 <div class="ray"></div>
@@ -649,7 +649,16 @@
                                 <div class="ray"></div>
                                 <div class="ray"></div>
                             </div>
-                            ☀️
+                            <span style="
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                font-size: 60px;
+                                animation: rotate 8s linear infinite;
+                                pointer-events: none;
+                                z-index: 2;
+                            ">☀️</span>
                         </div>
                     </div>
                 </div>
