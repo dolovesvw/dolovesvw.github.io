@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FreshLoaf Bakery — Artisan Bread, Baked Fresh Daily</title>
   <meta name="description" content="Authentic artisan sourdough and rustic breads using simple ingredients. Local pickup & delivery. No preservatives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* === CSS Variables === */
     :root {
       --primary: #8B4513;
       --primary-dark: #654321;
@@ -18,6 +20,7 @@
       --text: #2C1810;
       --text-light: #5D4E37;
       --success: #2d9b6a;
+      --error: #dc2626;
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
       --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
       --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
@@ -25,7 +28,6 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* === Reset === */
     * {
       margin: 0;
       padding: 0;
@@ -37,7 +39,7 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text);
       line-height: 1.6;
       background: linear-gradient(180deg, #FFFDFB 0%, var(--cream-light) 100%);
@@ -61,8 +63,14 @@
       color: inherit;
     }
 
-    /* === Header === */
-    header {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    .header {
       position: sticky;
       top: 0;
       z-index: 100;
@@ -70,21 +78,13 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       box-shadow: var(--shadow-sm);
-      transition: transform 0.3s ease;
     }
 
-    header.hidden {
-      transform: translateY(-100%);
-    }
-
-    nav {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 2rem;
+      padding: 1rem 0;
     }
 
     .logo {
@@ -146,19 +146,6 @@
       align-items: center;
     }
 
-    .lang-toggle {
-      padding: 0.5rem 1rem;
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .lang-toggle:hover {
-      background: var(--cream-light);
-    }
-
     .cart-btn {
       position: relative;
       padding: 0.75rem 1.25rem;
@@ -179,7 +166,7 @@
       position: absolute;
       top: -6px;
       right: -6px;
-      background: #000;
+      background: var(--error);
       color: white;
       width: 22px;
       height: 22px;
@@ -190,64 +177,44 @@
       font-weight: 700;
     }
 
-    /* === Mobile Menu === */
-    .mobile-menu-btn {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      background: transparent;
-      padding: 0.5rem;
-    }
-
-    .mobile-menu-btn span {
-      width: 24px;
-      height: 2px;
-      background: var(--text);
-      transition: var(--transition);
-    }
-
-    /* === Hero === */
+    /* Hero Section */
     .hero {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 3rem;
-      align-items: center;
-      min-height: 70vh;
+      padding: 4rem 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--cream-light) 0%, var(--white) 100%);
     }
 
-    .hero-content h1 {
+    .hero h1 {
       font-size: clamp(2.5rem, 5vw, 4rem);
       line-height: 1.1;
       margin-bottom: 1rem;
       color: var(--primary);
+      font-weight: 700;
     }
 
-    .hero-tagline {
+    .hero p {
       font-size: 1.25rem;
       color: var(--text-light);
       margin-bottom: 2rem;
       max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .btn-primary {
+    .btn {
       padding: 1rem 2rem;
-      background: var(--primary);
-      color: white;
       border-radius: 50px;
       font-weight: 600;
       font-size: 1.1rem;
-      box-shadow: var(--shadow-md);
       transition: var(--transition);
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow-md);
     }
 
     .btn-primary:hover {
@@ -257,14 +224,9 @@
     }
 
     .btn-secondary {
-      padding: 1rem 2rem;
       background: white;
       color: var(--primary);
       border: 2px solid var(--primary);
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: var(--transition);
     }
 
     .btn-secondary:hover {
@@ -272,238 +234,32 @@
       color: white;
     }
 
-    .hero-highlights {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .highlight-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.25rem;
-      background: white;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 50px;
-      box-shadow: var(--shadow-sm);
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-
-    /* === Featured Card === */
-    .featured-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-md);
-      position: sticky;
-      top: 100px;
-    }
-
-    .featured-card h3 {
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-
-    .featured-item {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .featured-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .featured-item img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .featured-item h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .featured-item .desc {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-bottom: 0.5rem;
-    }
-
-    .featured-item .price {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .btn-add {
-      padding: 0.5rem 1rem;
-      background: var(--success);
-      color: white;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      width: 100%;
-    }
-
-    .btn-add:hover {
-      background: #25844e;
-      transform: scale(1.02);
-    }
-
-    /* === Testimonials Mini === */
-    .testimonials-mini {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-
-    .testimonial-mini {
-      background: white;
-      padding: 1.25rem;
-      border-radius: var(--radius);
-      border-left: 4px solid var(--accent);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .testimonial-mini:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .testimonial-mini p {
-      font-style: italic;
-      color: var(--text-light);
-      margin-bottom: 0.75rem;
-    }
-
-    .testimonial-mini .author {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .testimonials-cta {
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-
-    .testimonials-cta a {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .testimonials-cta a:hover {
-      color: var(--accent);
-    }
-
-    /* === Newsletter === */
-    .newsletter-box {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: var(--radius);
-      color: white;
-    }
-
-    .newsletter-box h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .newsletter-box p {
-      opacity: 0.9;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-
-    .newsletter-form {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    .newsletter-form button {
-      padding: 0.75rem 1.5rem;
-      background: white;
-      color: var(--primary);
-      border-radius: 8px;
-      font-weight: 600;
-    }
-
-    .newsletter-form button:hover {
-      background: var(--cream);
-    }
-
-    /* === Sections === */
-    section {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
+    /* Products Section */
+    .products {
+      padding: 4rem 0;
     }
 
     .section-title {
       font-size: 2.5rem;
       margin-bottom: 3rem;
       color: var(--primary);
+      text-align: center;
       position: relative;
-      padding-bottom: 1rem;
     }
 
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 80px;
       height: 4px;
       background: var(--accent);
       border-radius: 2px;
     }
 
-    /* === Products Grid === */
-    .filter-bar {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 0.75rem 1.5rem;
-      background: white;
-      border: 2px solid transparent;
-      border-radius: 50px;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
+    /* Filter bar removed as requested */
 
     .products-grid {
       display: grid;
@@ -554,325 +310,59 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 1rem;
+      margin: 1rem 0;
     }
 
-    .product-info .rating {
+    .product-description {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .product-weight {
+      background: var(--cream);
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .product-rating {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
+      gap: 0.25rem;
       color: var(--text-light);
     }
 
     .stars {
       color: #FFB800;
+      font-size: 0.8rem;
     }
 
-    /* === About Section === */
-    .about-content {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-story {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .about-story h3 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .about-story p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-    }
-
-    .process-photos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .process-photos img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .process-photos img:hover {
-      transform: scale(1.05);
-      box-shadow: var(--shadow-md);
-    }
-
-    .about-sidebar {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
-      position: sticky;
-      top: 100px;
-    }
-
-    .about-sidebar h4 {
-      font-size: 1.3rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .hours-list {
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      color: var(--text-light);
-    }
-
-    .hours-list div {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    /* === Testimonials Full === */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .testimonial-full {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      gap: 1.5rem;
-      transition: var(--transition);
-    }
-
-    .testimonial-full:hover {
-      box-shadow: var(--shadow-md);
-    }
-
-    .testimonial-full img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .testimonial-content h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
-      color: var(--primary);
-    }
-
-    .testimonial-category {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background: var(--cream);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      margin-bottom: 0.75rem;
-      color: var(--text-light);
-    }
-
-    .testimonial-content p {
-      font-style: italic;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    /* === How It Works === */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .step-card {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .step-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .step-number {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+    .btn-add {
+      padding: 0.75rem 1.5rem;
+      background: var(--success);
       color: white;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 0 auto 1.5rem;
-      box-shadow: var(--shadow-md);
-    }
-
-    .step-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-      color: var(--primary);
-    }
-
-    .step-card p {
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .info-boxes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .info-box {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .info-box h4 {
-      font-size: 1.3rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .info-box p {
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    /* === Contact === */
-    .contact-content {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 3rem;
-    }
-
-    .contact-form {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
+      border-radius: 8px;
       font-weight: 600;
-      color: var(--text);
-    }
-
-    .form-group input,
-    .form-group textarea {
       width: 100%;
-      padding: 0.75rem;
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: var(--transition);
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
+    .btn-add:hover {
+      background: #25844e;
+      transform: scale(1.02);
     }
 
-    .form-group textarea {
-      resize: vertical;
-      min-height: 150px;
-    }
-
-    .contact-map {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      height: 100%;
-      min-height: 400px;
-    }
-
-    .contact-map iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* === Footer === */
-    footer {
-      background: var(--text);
-      color: white;
-      padding: 3rem 2rem 1.5rem;
-      margin-top: 4rem;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-section h3 {
-      margin-bottom: 1rem;
-      color: var(--accent-light);
-    }
-
-    .footer-section p,
-    .footer-section a {
-      opacity: 0.8;
-      line-height: 1.8;
-    }
-
-    .footer-section a:hover {
-      opacity: 1;
-      color: var(--accent-light);
-    }
-
-    .footer-bottom {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-      opacity: 0.7;
-    }
-
-    /* === Cart Modal === */
+    /* Cart Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -927,10 +417,6 @@
       background: var(--cream);
     }
 
-    .cart-items {
-      margin-bottom: 2rem;
-    }
-
     .cart-item {
       display: flex;
       gap: 1rem;
@@ -938,30 +424,22 @@
       background: var(--cream-light);
       border-radius: 8px;
       margin-bottom: 1rem;
+      align-items: center;
     }
 
     .cart-item-image {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       background: white;
       border-radius: 8px;
       display: grid;
       place-items: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
       flex-shrink: 0;
     }
 
     .cart-item-details {
       flex: 1;
-    }
-
-    .cart-item-details h4 {
-      margin-bottom: 0.25rem;
-    }
-
-    .cart-item-details .price {
-      color: var(--text-light);
-      font-size: 0.9rem;
     }
 
     .cart-item-actions {
@@ -993,14 +471,15 @@
     .remove-btn {
       padding: 0.5rem 1rem;
       background: transparent;
-      color: #dc2626;
-      border: 1px solid #dc2626;
+      color: var(--error);
+      border: 1px solid var(--error);
       border-radius: 6px;
       font-size: 0.9rem;
+      margin-left: 0.5rem;
     }
 
     .remove-btn:hover {
-      background: #dc2626;
+      background: var(--error);
       color: white;
     }
 
@@ -1019,13 +498,6 @@
       gap: 1rem;
     }
 
-    .cart-actions button {
-      flex: 1;
-      padding: 1rem;
-      border-radius: 8px;
-      font-weight: 600;
-    }
-
     .empty-cart {
       text-align: center;
       padding: 3rem 1rem;
@@ -1038,14 +510,298 @@
       opacity: 0.3;
     }
 
-    /* === Responsive === */
-    @media (max-width: 1024px) {
-      .hero {
+    /* Checkout Form */
+    .checkout-form {
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .order-summary {
+      background: var(--cream-light);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .order-summary h4 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .success-message {
+      background: var(--success);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .payment-info {
+      background: var(--cream-light);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 4rem 0;
+      background: var(--white);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-story {
+      background: var(--cream-light);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-story h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .about-story p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .process-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .process-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .process-item h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .process-item p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .hours-card,
+    .testimonials-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hours-card h4,
+    .testimonials-card h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .hours-list {
+      margin-bottom: 1rem;
+    }
+
+    .hours-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .hours-note {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .testimonial {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .testimonial:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 4rem 0;
+      background: var(--cream-light);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-form h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-info h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: var(--cream);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .info-item h4 {
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-item p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: transparent;
+      padding: 0.5rem;
+    }
+
+    .mobile-menu-btn span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: var(--transition);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .products-grid {
         grid-template-columns: 1fr;
       }
 
-      .featured-card {
-        position: static;
+      /* Filter bar removed */
+
+      .cart-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-item-actions {
+        justify-content: center;
       }
 
       .about-content {
@@ -1055,109 +811,42 @@
       .contact-content {
         grid-template-columns: 1fr;
       }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .product-details {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
     }
 
-    @media (max-width: 768px) {
-      nav {
-        padding: 1rem;
+    @media (max-width: 480px) {
+      .process-grid {
+        grid-template-columns: 1fr;
       }
 
-      .nav-links {
-        display: none;
+      .hero h1 {
+        font-size: 2rem;
       }
 
-      .mobile-menu-btn {
-        display: flex;
-      }
-
-      .hero {
-        padding: 2rem 1rem;
-      }
-
-      section {
-        padding: 3rem 1rem;
+      .hero p {
+        font-size: 1rem;
       }
 
       .section-title {
         font-size: 2rem;
       }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-        text-align: center;
-      }
-
-      .newsletter-form {
-        flex-direction: column;
-      }
-
-      .process-photos {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-    }
-
-    /* === Animations === */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    /* === Loading State === */
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header id="header">
-    <nav>
-      <a href="#home" class="logo">
+  <header class="header">
+    <nav class="nav container">
+      <a href="#" class="logo">
         <div class="logo-icon">FL</div>
         <div>
           <div style="font-weight: 700;">FreshLoaf</div>
@@ -1166,17 +855,15 @@
       </a>
 
       <ul class="nav-links">
-        <li><a href="#home" data-i18n="nav.home">Home</a></li>
-        <li><a href="#shop" data-i18n="nav.shop">Shop</a></li>
-        <li><a href="#about" data-i18n="nav.about">About</a></li>
-        <li><a href="#how" data-i18n="nav.how">How It Works</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button class="lang-toggle" id="langToggle">🇬🇧 EN / 🇷🇺 RU</button>
         <button class="cart-btn" id="openCart">
-          🛒 <span data-i18n="cart.title">Cart</span>
+          🛒 Cart
           <span class="cart-badge" id="cartCount">0</span>
         </button>
       </div>
@@ -1192,532 +879,261 @@
   <main>
     <!-- Hero Section -->
     <section class="hero" id="home">
-      <div class="hero-content">
-        <h1 data-i18n="hero.title">Freshly baked, just for you.</h1>
-        <p class="hero-tagline" data-i18n="hero.tagline">Authentic artisan sourdough and rustic breads using simple ingredients — flour, water, salt, and time. No preservatives. Local pickup & delivery.</p>
-
-        <div class="hero-cta">
-          <button class="btn-primary" onclick="location.hash='#shop'" data-i18n="hero.order">Order Now</button>
-          <button class="btn-secondary" onclick="location.hash='#about'" data-i18n="hero.story">Read Our Story →</button>
-        </div>
-
-        <div class="hero-highlights">
-          <div class="highlight-pill">🏡 <strong data-i18n="pill.local">Local</strong></div>
-          <div class="highlight-pill">🌾 <strong data-i18n="pill.fresh">Fresh Daily</strong></div>
-          <div class="highlight-pill">❌ <strong data-i18n="pill.nopreserve">No Preservatives</strong></div>
-          <div class="highlight-pill">🚚 <strong data-i18n="pill.delivery">Pickup & Delivery</strong></div>
-        </div>
-
-        <!-- Mini Testimonials -->
-        <div class="testimonials-mini">
-          <div class="testimonial-mini">
-            <p data-i18n="mini.one">"Best sourdough in the city! The crust is perfect."</p>
-            <div class="author">— Anna K.</div>
-          </div>
-          <div class="testimonial-mini">
-            <p data-i18n="mini.two">"Tastes like home, fresh every time."</p>
-            <div class="author">— David R.</div>
-          </div>
-          <div class="testimonial-mini">
-            <p data-i18n="mini.three">"Reliable pickup — always warm and delicious."</p>
-            <div class="author">— Olga S.</div>
-          </div>
-        </div>
-
-        <div class="testimonials-cta">
-          <a href="#about" data-i18n="mini.more">See more stories →</a>
-        </div>
-
-        <!-- Newsletter -->
-        <div class="newsletter-box">
-          <h3 data-i18n="newsletter.title">Get Fresh Bake Schedules</h3>
-          <p data-i18n="newsletter.desc">Subscribe to our weekly newsletter for baking schedules, new products, and exclusive offers.</p>
-          <form class="newsletter-form" id="newsletterForm">
-            <input type="email" id="newsletterEmail" placeholder="your@email.com" required>
-            <button type="submit" data-i18n="newsletter.subscribe">Subscribe</button>
-          </form>
+      <div class="container">
+        <h1>Freshly baked, just for you.</h1>
+        <p>Authentic artisan sourdough and rustic breads using simple ingredients — flour, water, salt, and time. No preservatives. Local pickup & delivery.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="#products" class="btn btn-primary">Shop Now</a>
+          <a href="#about" class="btn btn-secondary">Our Story</a>
         </div>
       </div>
-
-      <!-- Featured Products Card -->
-      <aside class="featured-card">
-        <h3 data-i18n="featured.title">Featured Today</h3>
-        
-        <div class="featured-item">
-          <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80" alt="Classic Sourdough">
-          <div>
-            <h4>Classic Sourdough</h4>
-            <p class="desc">Crusty exterior, tangy flavor, open crumb</p>
-            <div class="price">$8.50</div>
-            <button class="btn-add" data-sku="sourdough" data-name="Classic Sourdough" data-price="8.50">Add to Cart</button>
-          </div>
-        </div>
-
-        <div class="featured-item">
-          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80" alt="Rustic Rye">
-          <div>
-            <h4>Rustic Rye</h4>
-            <p class="desc">Hearty, dense, aromatic</p>
-            <div class="price">$9.00</div>
-            <button class="btn-add" data-sku="rye" data-name="Rustic Rye" data-price="9.00">Add to Cart</button>
-          </div>
-        </div>
-      </aside>
     </section>
 
-    <!-- Shop Section -->
-    <section id="shop">
-      <h2 class="section-title" data-i18n="shop.title">Shop Our Breads</h2>
-      
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all" data-i18n="category.all">All Breads</button>
-        <button class="filter-btn" data-filter="sourdough" data-i18n="category.sourdough">Sourdough</button>
-        <button class="filter-btn" data-filter="rye" data-i18n="category.rye">Rye</button>
-        <button class="filter-btn" data-filter="pastry" data-i18n="category.pastry">Pastries</button>
-        <button class="filter-btn" data-filter="special" data-i18n="category.special">Seasonal Specials</button>
-      </div>
+    <!-- Products Section -->
+    <section class="products" id="products">
+      <div class="container">
+        <h2 class="section-title">Shop Our Breads</h2>
+        
+        <div class="products-grid">
+          <!-- Sourdough Breads -->
+          <div class="product-card">
+            <img src="https://dummyimage.com/400x300/8B4513/fff&text=Classic+Sourdough" alt="Classic Sourdough">
+            <div class="product-info">
+              <span class="category">Sourdough</span>
+              <h3>Classic Sourdough</h3>
+              <p class="product-description">Traditional sourdough with tangy flavor and open crumb structure</p>
+              <div class="product-details">
+                <div class="product-weight">1.5 lbs</div>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span>4.9 (127)</span>
+                </div>
+              </div>
+              <div class="price">$8.50</div>
+              <button class="btn-add" onclick="addToCart('sourdough', 'Classic Sourdough', 8.50)">Add to Cart</button>
+            </div>
+          </div>
 
-      <div class="products-grid" id="productsGrid">
-        <!-- Products will be inserted by JavaScript -->
+          <div class="product-card">
+            <img src="https://dummyimage.com/400x300/D2691E/fff&text=French+Baguette" alt="French Baguette">
+            <div class="product-info">
+              <span class="category">Sourdough</span>
+              <h3>French Baguette</h3>
+              <p class="product-description">Crispy crust with soft, airy interior - perfect for sandwiches</p>
+              <div class="product-details">
+                <div class="product-weight">0.8 lbs</div>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span>4.9 (203)</span>
+                </div>
+              </div>
+              <div class="price">$5.50</div>
+              <button class="btn-add" onclick="addToCart('baguette', 'French Baguette', 5.50)">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://dummyimage.com/400x300/654321/fff&text=Whole+Grain" alt="Whole Grain Sourdough">
+            <div class="product-info">
+              <span class="category">Sourdough</span>
+              <h3>Whole Grain Sourdough</h3>
+              <p class="product-description">Nutty whole grain sourdough with hearty texture</p>
+              <div class="product-details">
+                <div class="product-weight">1.3 lbs</div>
+                <div class="product-rating">
+                  <span class="stars">★★★★★</span>
+                  <span>4.7 (86)</span>
+                </div>
+              </div>
+              <div class="price">$7.50</div>
+              <button class="btn-add" onclick="addToCart('wholegrain', 'Whole Grain Sourdough', 7.50)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
-      <h2 class="section-title" data-i18n="about.title">About FreshLoaf</h2>
-      
-      <div class="about-content">
-        <div>
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About FreshLoaf</h2>
+        
+        <div class="about-content">
           <div class="about-story">
-            <h3 data-i18n="about.storyTitle">Our Story</h3>
-            <p data-i18n="about.storyText1">I started baking in my small kitchen five years ago with a simple goal: to share good bread with my neighbors. What began as weekend experiments with natural starters became a passion for creating authentic artisan bread using traditional methods.</p>
-            <p data-i18n="about.storyText2">We use only four ingredients: organic flour, filtered water, sea salt, and time. No shortcuts, no preservatives, no dough conditioners. Each loaf is hand-shaped and baked in small batches to ensure the highest quality.</p>
-            <p data-i18n="about.storyText3">Our natural starter has been nurtured for over three years, giving our bread its distinctive tangy flavor and incredible texture. We source our flour from local mills and bake fresh every morning.</p>
-
-            <h4 style="margin-top: 2rem; margin-bottom: 1rem;" data-i18n="about.processTitle">Our Process</h4>
-            <div class="process-photos">
-              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80" alt="Mixing dough">
-              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80" alt="Natural starter">
-              <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=800&q=80" alt="Shaping loaves">
-              <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=800&q=80" alt="Baking in oven">
-              <img src="https://images.unsplash.com/photo-1595941120360-6b0abfcd8d4d?w=800&q=80" alt="Fresh from oven">
-              <img src="https://images.unsplash.com/photo-1552910849-cd89d6968f13?w=800&q=80" alt="Final product">
-            </div>
-          </div>
-
-          <!-- Full Testimonials -->
-          <div style="margin-top: 3rem;">
-            <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 1.5rem;" data-i18n="about.testTitle">What Our Customers Say</h3>
-            <div class="testimonials-grid">
-              <div class="testimonial-full">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Anna K">
-                <div class="testimonial-content">
-                  <h4>Anna K.</h4>
-                  <span class="testimonial-category">Flavor</span>
-                  <p>"The sourdough's tang is perfectly balanced and well-developed. You can taste the quality of the ingredients and the care in every bite. Truly artisan bread."</p>
-                </div>
+            <h3>Our Story</h3>
+            <p>I started baking in my small kitchen five years ago with a simple goal: to share good bread with my neighbors. What began as weekend experiments with natural starters became a passion for creating authentic artisan bread using traditional methods.</p>
+            <p>We use only four ingredients: organic flour, filtered water, sea salt, and time. No shortcuts, no preservatives, no dough conditioners. Each loaf is hand-shaped and baked in small batches to ensure the highest quality.</p>
+            <p>Our natural starter has been nurtured for over three years, giving our bread its distinctive tangy flavor and incredible texture. We source our flour from local mills and bake fresh every morning.</p>
+            
+            <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Our Process</h4>
+            <div class="process-grid">
+              <div class="process-item">
+                <div class="process-icon">🌾</div>
+                <h4>Mix</h4>
+                <p>Combine organic flour, water, salt, and our natural starter</p>
               </div>
-
-              <div class="testimonial-full">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="David R">
-                <div class="testimonial-content">
-                  <h4>David R.</h4>
-                  <span class="testimonial-category">Freshness</span>
-                  <p>"I order weekly and the bread always arrives warm, like it was baked just for me. The crust stays crispy for days when stored properly. Best bread I've ever had."</p>
-                </div>
+              <div class="process-item">
+                <div class="process-icon">⏰</div>
+                <h4>Ferment</h4>
+                <p>Long, slow fermentation for maximum flavor development</p>
               </div>
-
-              <div class="testimonial-full">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Olga S">
-                <div class="testimonial-content">
-                  <h4>Olga S.</h4>
-                  <span class="testimonial-category">Service</span>
-                  <p>"Pickup is always smooth and convenient. The staff is friendly and knowledgeable. They even gave me tips on how to store and reheat the bread. Excellent service!"</p>
-                </div>
+              <div class="process-item">
+                <div class="process-icon">✋</div>
+                <h4>Shape</h4>
+                <p>Hand-shaped with care and attention to detail</p>
               </div>
-
-              <div class="testimonial-full">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Mikhail P">
-                <div class="testimonial-content">
-                  <h4>Mikhail P.</h4>
-                  <span class="testimonial-category">Flavor</span>
-                  <p>"My whole family loved the rye bread — rich aroma, dense crumb, and authentic flavor. Reminds me of the bread from my childhood in Eastern Europe."</p>
-                </div>
-              </div>
-
-              <div class="testimonial-full">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Sarah M">
-                <div class="testimonial-content">
-                  <h4>Sarah M.</h4>
-                  <span class="testimonial-category">Quality</span>
-                  <p>"You can see and taste the difference that natural fermentation makes. No weird aftertaste, just pure bread flavor. Worth every penny!"</p>
-                </div>
-              </div>
-
-              <div class="testimonial-full">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" alt="James L">
-                <div class="testimonial-content">
-                  <h4>James L.</h4>
-                  <span class="testimonial-category">Value</span>
-                  <p>"Initially I thought the price was high, but one loaf lasts us almost a week and tastes better every day. Much better value than store-bought bread that goes stale in two days."</p>
-                </div>
+              <div class="process-item">
+                <div class="process-icon">🔥</div>
+                <h4>Bake</h4>
+                <p>Baked in stone ovens for perfect crust and crumb</p>
               </div>
             </div>
           </div>
-        </div>
 
-        <aside class="about-sidebar">
-          <h4 data-i18n="about.hoursTitle">Hours of Operation</h4>
-          <div class="hours-list">
-            <div><span>Monday</span><span>Closed</span></div>
-            <div><span>Tuesday - Friday</span><span>7AM - 6PM</span></div>
-            <div><span>Saturday</span><span>8AM - 5PM</span></div>
-            <div><span>Sunday</span><span>8AM - 2PM</span></div>
+          <div class="about-sidebar">
+            <div class="hours-card">
+              <h4>Hours of Operation</h4>
+              <div class="hours-list">
+                <div class="hours-item">
+                  <span>Monday</span>
+                  <span>Closed</span>
+                </div>
+                <div class="hours-item">
+                  <span>Tuesday - Friday</span>
+                  <span>7AM - 6PM</span>
+                </div>
+                <div class="hours-item">
+                  <span>Saturday</span>
+                  <span>8AM - 5PM</span>
+                </div>
+                <div class="hours-item">
+                  <span>Sunday</span>
+                  <span>8AM - 2PM</span>
+                </div>
+              </div>
+              <p class="hours-note">Breads arrive fresh throughout the day. Call ahead for specific items.</p>
+            </div>
+
+            <div class="testimonials-card">
+              <h4>What Our Customers Say</h4>
+              <div class="testimonial">
+                <p>"Best sourdough in the city! The crust is perfect and the flavor is incredible."</p>
+                <div class="testimonial-author">— Anna K.</div>
+              </div>
+              <div class="testimonial">
+                <p>"Tastes like home, fresh every time. My family loves the whole grain loaf."</p>
+                <div class="testimonial-author">— David R.</div>
+              </div>
+              <div class="testimonial">
+                <p>"Reliable pickup — always warm and delicious. Worth every penny!"</p>
+                <div class="testimonial-author">— Sarah M.</div>
+              </div>
+            </div>
           </div>
-          <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">
-            <span data-i18n="about.note">Note: Breads arrive fresh throughout the day. Call ahead for specific items.</span>
-          </p>
-          <a href="#contact" class="btn-primary" style="display: block; text-align: center;" data-i18n="about.findPickup">Find Pickup Points →</a>
-        </aside>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how">
-      <h2 class="section-title" data-i18n="how.title">How It Works</h2>
-      
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3 data-i18n="how.step1">Browse & Order</h3>
-          <p data-i18n="how.step1desc">Choose your favorite breads and pastries. Select pickup or delivery at checkout.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3 data-i18n="how.step2">We Bake Fresh</h3>
-          <p data-i18n="how.step2desc">Your order is baked fresh using our natural starter and traditional methods. No preservatives.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3 data-i18n="how.step3">Pickup or Delivery</h3>
-          <p data-i18n="how.step3desc">Choose convenient pickup windows or delivery to your door. Tracking available.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <h3 data-i18n="how.step4">Enjoy!</h3>
-          <p data-i18n="how.step4desc">Slice, toast, or enjoy as is. Store in paper and reheat at 180°C for best results.</p>
-        </div>
-      </div>
-
-      <div class="info-boxes">
-        <div class="info-box">
-          <h4 data-i18n="how.deliveryTitle">Pickup & Delivery Info</h4>
-          <p data-i18n="how.deliveryText"><strong>Pickup:</strong> Same-day available for orders placed before 11 AM. Choose your preferred time slot at checkout.</p>
-          <p data-i18n="how.deliveryText2"><strong>Delivery:</strong> Available within 10 miles. Free delivery on orders over $30. Schedule up to 3 days in advance.</p>
-        </div>
-
-        <div class="info-box">
-          <h4 data-i18n="how.policyTitle">Storage & Policies</h4>
-          <p data-i18n="how.policyText"><strong>Shelf Life:</strong> 3-4 days when stored in paper at room temperature. Freeze for up to 3 months.</p>
-          <p data-i18n="how.policyText2"><strong>Reheating:</strong> 6-8 minutes at 180°C (350°F) for a crispy crust.</p>
-          <p data-i18n="how.policyText3"><strong>Refunds:</strong> Quality guarantee. Contact us within 24 hours if you're not satisfied.</p>
-        </div>
-
-        <div class="info-box">
-          <h4 data-i18n="how.ingredientsTitle">Our Ingredients</h4>
-          <p data-i18n="how.ingredientsText">We believe in transparency. Every loaf contains: organic flour (unbleached, unbromated), filtered water, sea salt, and our natural starter. That's it.</p>
-          <p data-i18n="how.ingredientsText2">No dough conditioners, no preservatives, no shortcuts. Just time-tested techniques and quality ingredients.</p>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2 class="section-title" data-i18n="contact.title">Get In Touch</h2>
-      
-      <div class="contact-content">
-        <div class="contact-form">
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="contactName" data-i18n="contact.name">Name</label>
-              <input type="text" id="contactName" required placeholder="Your name">
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        
+        <div class="contact-content">
+          <div class="contact-form">
+            <h3>Send us a message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="contactName">Name</label>
+                <input type="text" id="contactName" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" required>
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+
+          <div class="contact-info">
+            <h3>Visit Us</h3>
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div>
+                <h4>Address</h4>
+                <p>123 Artisan Way<br>Philadelphia, PA 19102</p>
+              </div>
             </div>
-
-            <div class="form-group">
-              <label for="contactEmail" data-i18n="contact.email">Email</label>
-              <input type="email" id="contactEmail" required placeholder="your@email.com">
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div>
+                <h4>Phone</h4>
+                <p>(555) 123-4567</p>
+              </div>
             </div>
-
-            <div class="form-group">
-              <label for="contactMessage" data-i18n="contact.message">Message</label>
-              <textarea id="contactMessage" required placeholder="How can we help you?"></textarea>
+            <div class="info-item">
+              <div class="info-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>hello@freshloaf.com</p>
+              </div>
             </div>
-
-            <button type="submit" class="btn-primary" style="width: 100%;" data-i18n="contact.send">Send Message</button>
-          </form>
-        </div>
-
-        <div class="contact-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3058.0349193262804!2d-75.16522908462776!3d39.95271997942108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6c63e5b2f6ae5%3A0x8b5e6e6d4b5e6d5!2sPhiladelphia%2C%20PA!5e0!3m2!1sen!2sus!4v1234567890"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Bakery location map"></iframe>
+            <div class="info-item">
+              <div class="info-icon">🚚</div>
+              <div>
+                <h4>Delivery</h4>
+                <p>Free delivery within 10 miles<br>Orders over $30</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>FreshLoaf Bakery</h3>
-        <p>Authentic artisan bread baked fresh daily using traditional methods and natural ingredients.</p>
-        <p style="margin-top: 1rem;">📍 Philadelphia, PA<br>📞 (555) 123-4567<br>✉️ hello@freshloaf.com</p>
-      </div>
-
-      <div class="footer-section">
-        <h3 data-i18n="footer.quickLinks">Quick Links</h3>
-        <p><a href="#shop" data-i18n="nav.shop">Shop</a></p>
-        <p><a href="#about" data-i18n="nav.about">About Us</a></p>
-        <p><a href="#how" data-i18n="nav.how">How It Works</a></p>
-        <p><a href="#contact" data-i18n="nav.contact">Contact</a></p>
-      </div>
-
-      <div class="footer-section">
-        <h3 data-i18n="footer.followUs">Follow Us</h3>
-        <p><a href="#" data-i18n="footer.instagram">Instagram</a></p>
-        <p><a href="#" data-i18n="footer.facebook">Facebook</a></p>
-        <p><a href="#" data-i18n="footer.twitter">Twitter</a></p>
-      </div>
-
-      <div class="footer-section">
-        <h3 data-i18n="footer.subscribe">Stay Updated</h3>
-        <p data-i18n="footer.subscribeText">Get weekly bake schedules and exclusive offers.</p>
-        <button class="btn-primary" style="margin-top: 1rem;" onclick="document.querySelector('#newsletterEmail').scrollIntoView({behavior: 'smooth'})" data-i18n="footer.subscribeBtn">Subscribe Now</button>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; <span id="year"></span> FreshLoaf Bakery. <span data-i18n="footer.rights">All rights reserved.</span></p>
-      <p style="margin-top: 0.5rem;"><span data-i18n="footer.lang">Language:</span> <strong id="currentLang">English</strong></p>
-    </div>
-  </footer>
-
   <!-- Cart Modal -->
   <div class="modal" id="cartModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 data-i18n="cart.title">Your Cart</h2>
+        <h2 id="modalTitle">Your Cart</h2>
         <button class="close-btn" id="closeCart" aria-label="Close cart">×</button>
       </div>
 
-      <div class="cart-items" id="cartItems">
-        <div class="empty-cart">
-          <div class="empty-cart-icon">🧺</div>
-          <p data-i18n="cart.empty">Your cart is empty</p>
+      <div id="modalBody">
+        <div class="cart-items" id="cartItems">
+          <div class="empty-cart">
+            <div class="empty-cart-icon">🧺</div>
+            <p>Your cart is empty</p>
+          </div>
         </div>
-      </div>
 
-      <div class="cart-total">
-        <span data-i18n="cart.total">Total:</span>
-        <span id="cartTotal">$0.00</span>
-      </div>
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cartTotal">$0.00</span>
+        </div>
 
-      <div class="cart-actions">
-        <button class="btn-secondary" id="continueShopping" data-i18n="cart.continue">Continue Shopping</button>
-        <button class="btn-primary" id="checkoutBtn" data-i18n="cart.checkout">Checkout</button>
+        <div class="cart-actions">
+          <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
+          <button class="btn btn-primary" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // ==================== DATA ====================
-    const PRODUCTS = [
-      { sku: 'sourdough', name: 'Classic Sourdough', price: 8.50, category: 'sourdough', rating: 4.9, reviews: 127, img: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80' },
-      { sku: 'rye', name: 'Rustic Rye', price: 9.00, category: 'rye', rating: 4.8, reviews: 95, img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80' },
-      { sku: 'baguette', name: 'French Baguette', price: 5.50, category: 'sourdough', rating: 4.9, reviews: 203, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80' },
-      { sku: 'wholegrain', name: 'Whole Grain', price: 7.50, category: 'sourdough', rating: 4.7, reviews: 86, img: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=800&q=80' },
-      { sku: 'ciabatta', name: 'Olive Ciabatta', price: 8.00, category: 'special', rating: 4.8, reviews: 112, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80' },
-      { sku: 'croissant', name: 'Butter Croissant', price: 4.00, category: 'pastry', rating: 5.0, reviews: 341, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80' },
-      { sku: 'multigrain', name: 'Multigrain Loaf', price: 7.00, category: 'sourdough', rating: 4.6, reviews: 74, img: 'https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=800&q=80' },
-      { sku: 'pumpernickel', name: 'Pumpernickel', price: 8.50, category: 'rye', rating: 4.7, reviews: 63, img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80' },
-      { sku: 'focaccia', name: 'Rosemary Focaccia', price: 6.50, category: 'special', rating: 4.9, reviews: 156, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80' },
-      { sku: 'brioche', name: 'Brioche Loaf', price: 9.50, category: 'pastry', rating: 4.8, reviews: 142, img: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=800&q=80' }
-    ];
-
-    // I18N Translations
-    const I18N = {
-      en: {
-        nav: { home: 'Home', shop: 'Shop', about: 'About', how: 'How It Works', contact: 'Contact' },
-        hero: { title: 'Freshly baked, just for you.', tagline: 'Authentic artisan sourdough and rustic breads using simple ingredients — flour, water, salt, and time. No preservatives. Local pickup & delivery.', order: 'Order Now', story: 'Read Our Story →' },
-        pill: { local: 'Local', fresh: 'Fresh Daily', nopreserve: 'No Preservatives', delivery: 'Pickup & Delivery' },
-        mini: { one: '"Best sourdough in the city! The crust is perfect."', two: '"Tastes like home, fresh every time."', three: '"Reliable pickup — always warm and delicious."', more: 'See more stories →' },
-        newsletter: { title: 'Get Fresh Bake Schedules', desc: 'Subscribe to our weekly newsletter for baking schedules, new products, and exclusive offers.', subscribe: 'Subscribe' },
-        featured: { title: 'Featured Today' },
-        shop: { title: 'Shop Our Breads' },
-        category: { all: 'All Breads', sourdough: 'Sourdough', rye: 'Rye', pastry: 'Pastries', special: 'Seasonal Specials' },
-        about: { 
-          title: 'About FreshLoaf', 
-          storyTitle: 'Our Story',
-          storyText1: 'I started baking in my small kitchen five years ago with a simple goal: to share good bread with my neighbors. What began as weekend experiments with natural starters became a passion for creating authentic artisan bread using traditional methods.',
-          storyText2: 'We use only four ingredients: organic flour, filtered water, sea salt, and time. No shortcuts, no preservatives, no dough conditioners. Each loaf is hand-shaped and baked in small batches to ensure the highest quality.',
-          storyText3: 'Our natural starter has been nurtured for over three years, giving our bread its distinctive tangy flavor and incredible texture. We source our flour from local mills and bake fresh every morning.',
-          processTitle: 'Our Process',
-          testTitle: 'What Our Customers Say',
-          hoursTitle: 'Hours of Operation',
-          note: 'Note: Breads arrive fresh throughout the day. Call ahead for specific items.',
-          findPickup: 'Find Pickup Points →'
-        },
-        how: { 
-          title: 'How It Works',
-          step1: 'Browse & Order', step1desc: 'Choose your favorite breads and pastries. Select pickup or delivery at checkout.',
-          step2: 'We Bake Fresh', step2desc: 'Your order is baked fresh using our natural starter and traditional methods. No preservatives.',
-          step3: 'Pickup or Delivery', step3desc: 'Choose convenient pickup windows or delivery to your door. Tracking available.',
-          step4: 'Enjoy!', step4desc: 'Slice, toast, or enjoy as is. Store in paper and reheat at 180°C for best results.',
-          deliveryTitle: 'Pickup & Delivery Info',
-          deliveryText: 'Pickup: Same-day available for orders placed before 11 AM. Choose your preferred time slot at checkout.',
-          deliveryText2: 'Delivery: Available within 10 miles. Free delivery on orders over $30. Schedule up to 3 days in advance.',
-          policyTitle: 'Storage & Policies',
-          policyText: 'Shelf Life: 3-4 days when stored in paper at room temperature. Freeze for up to 3 months.',
-          policyText2: 'Reheating: 6-8 minutes at 180°C (350°F) for a crispy crust.',
-          policyText3: 'Refunds: Quality guarantee. Contact us within 24 hours if you\'re not satisfied.',
-          ingredientsTitle: 'Our Ingredients',
-          ingredientsText: 'We believe in transparency. Every loaf contains: organic flour (unbleached, unbromated), filtered water, sea salt, and our natural starter. That\'s it.',
-          ingredientsText2: 'No dough conditioners, no preservatives, no shortcuts. Just time-tested techniques and quality ingredients.'
-        },
-        contact: { title: 'Get In Touch', name: 'Name', email: 'Email', message: 'Message', send: 'Send Message' },
-        cart: { title: 'Cart', empty: 'Your cart is empty', total: 'Total:', continue: 'Continue Shopping', checkout: 'Checkout' },
-        footer: { quickLinks: 'Quick Links', followUs: 'Follow Us', instagram: 'Instagram', facebook: 'Facebook', twitter: 'Twitter', subscribe: 'Stay Updated', subscribeText: 'Get weekly bake schedules and exclusive offers.', subscribeBtn: 'Subscribe Now', rights: 'All rights reserved.', lang: 'Language:' }
-      },
-      ru: {
-        nav: { home: 'Главная', shop: 'Магазин', about: 'О нас', how: 'Как заказать', contact: 'Контакты' },
-        hero: { title: 'Свежая выпечка специально для вас.', tagline: 'Аутентичный заквасочный хлеб, испеченный по традиционным рецептам. Только мука, вода, соль и время. Без консервантов. Самовывоз и доставка.', order: 'Заказать', story: 'Наша история →' },
-        pill: { local: 'Местный', fresh: 'Свежий', nopreserve: 'Без консервантов', delivery: 'Самовывоз и доставка' },
-        mini: { one: '"Лучший хлеб в городе! Идеальная корочка."', two: '"Вкус как дома, всегда свежо."', three: '"Надежный самовывоз — всегда тёплый."', more: 'Читать отзывы →' },
-        newsletter: { title: 'Расписание выпечки', desc: 'Подпишитесь на еженедельную рассылку с расписанием, новинками и специальными предложениями.', subscribe: 'Подписаться' },
-        featured: { title: 'Хиты дня' },
-        shop: { title: 'Наш хлеб' },
-        category: { all: 'Все', sourdough: 'Закваска', rye: 'Ржаной', pastry: 'Выпечка', special: 'Сезонные' },
-        about: { 
-          title: 'О FreshLoaf', 
-          storyTitle: 'Наша история',
-          storyText1: 'Я начал печь на своей маленькой кухне пять лет назад с простой целью: делиться хорошим хлебом с соседями. То, что началось как эксперименты с натуральной закваской, стало страстью к созданию аутентичного хлеба по традиционным методам.',
-          storyText2: 'Мы используем только четыре ингредиента: органическую муку, фильтрованную воду, морскую соль и время. Никаких коротких путей, консервантов или улучшителей. Каждый батон формируется вручную и выпекается небольшими партиями.',
-          storyText3: 'Нашу закваску мы растим более трех лет, она придает хлебу характерный кисловатый вкус и невероятную текстуру. Мы закупаем муку на местных мельницах и печём свежий хлеб каждое утро.',
-          processTitle: 'Наш процесс',
-          testTitle: 'Отзывы клиентов',
-          hoursTitle: 'Часы работы',
-          note: 'Примечание: Хлеб прибывает свежим в течение дня. Звоните заранее для конкретных позиций.',
-          findPickup: 'Точки самовывоза →'
-        },
-        how: { 
-          title: 'Как это работает',
-          step1: 'Выберите и закажите', step1desc: 'Выберите любимый хлеб и выпечку. Укажите самовывоз или доставку.',
-          step2: 'Мы печём свежим', step2desc: 'Ваш заказ выпекается свежим на натуральной закваске по традиционным методам.',
-          step3: 'Самовывоз или доставка', step3desc: 'Выберите удобное время самовывоза или доставку на дом. Отслеживание доступно.',
-          step4: 'Наслаждайтесь!', step4desc: 'Нарежьте, поджарьте или ешьте как есть. Храните в бумаге и разогревайте при 180°C.',
-          deliveryTitle: 'Самовывоз и доставка',
-          deliveryText: 'Самовывоз: В тот же день при заказе до 11:00. Выберите удобное время при оформлении.',
-          deliveryText2: 'Доставка: В радиусе 16 км. Бесплатная доставка при заказе от $30. Заказ за 3 дня.',
-          policyTitle: 'Хранение и политика',
-          policyText: 'Срок годности: 3-4 дня в бумаге при комнатной температуре. Заморозка до 3 месяцев.',
-          policyText2: 'Разогрев: 6-8 минут при 180°C для хрустящей корочки.',
-          policyText3: 'Возврат: Гарантия качества. Свяжитесь с нами в течение 24 часов при неудовлетворенности.',
-          ingredientsTitle: 'Наши ингредиенты',
-          ingredientsText: 'Мы верим в прозрачность. Каждый батон содержит: органическую муку (небелёную), фильтрованную воду, морскую соль и нашу закваску. Всё.',
-          ingredientsText2: 'Никаких улучшителей, консервантов, коротких путей. Только проверенные временем техники и качественные ингредиенты.'
-        },
-        contact: { title: 'Связаться с нами', name: 'Имя', email: 'Email', message: 'Сообщение', send: 'Отправить' },
-        cart: { title: 'Корзина', empty: 'Ваша корзина пуста', total: 'Итого:', continue: 'Продолжить покупки', checkout: 'Оформить заказ' },
-        footer: { quickLinks: 'Быстрые ссылки', followUs: 'Следите за нами', instagram: 'Instagram', facebook: 'Facebook', twitter: 'Twitter', subscribe: 'Будьте в курсе', subscribeText: 'Получайте еженедельное расписание и эксклюзивные предложения.', subscribeBtn: 'Подписаться', rights: 'Все права защищены.', lang: 'Язык:' }
-      }
-    };
-
-    // ==================== STATE ====================
-    let currentLang = localStorage.getItem('bakery_lang') || 'en';
+    // State
     let cart = JSON.parse(localStorage.getItem('bakery_cart') || '{}');
-    let currentFilter = 'all';
 
-    // ==================== UTILITY FUNCTIONS ====================
+    // Helper functions
     const $ = (sel) => document.querySelector(sel);
-    const $ = (sel) => document.querySelectorAll(sel);
-    
-    const money = (amount) => `${Number(amount).toFixed(2)}`;
-    
-    const saveCart = () => {
-      localStorage.setItem('bakery_cart', JSON.stringify(cart));
-      updateCartUI();
-    };
+    const $$ = (sel) => document.querySelectorAll(sel);
+    const money = (amount) => `$${Number(amount).toFixed(2)}`;
 
-    // ==================== TRANSLATIONS ====================
-    function applyTranslations() {
-      $('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const keys = key.split('.');
-        let value = I18N[currentLang];
-        
-        for (const k of keys) {
-          value = value?.[k];
-        }
-        
-        if (value) {
-          el.textContent = value;
-        }
-      });
-      
-      $('#currentLang').textContent = currentLang === 'en' ? 'English' : 'Русский';
-      renderProducts();
-    }
-
-    $('#langToggle').addEventListener('click', () => {
-      currentLang = currentLang === 'en' ? 'ru' : 'en';
-      localStorage.setItem('bakery_lang', currentLang);
-      applyTranslations();
-    });
-
-    // ==================== PRODUCTS ====================
-    function renderProducts() {
-      const grid = $('#productsGrid');
-      const filtered = currentFilter === 'all' 
-        ? PRODUCTS 
-        : PRODUCTS.filter(p => p.category === currentFilter);
-      
-      grid.innerHTML = filtered.map(product => `
-        <div class="product-card fade-in">
-          <img src="${product.img}" alt="${product.name}">
-          <div class="product-info">
-            <span class="category">${I18N[currentLang].category[product.category]}</span>
-            <h3>${product.name}</h3>
-            <div class="rating">
-              <span class="stars">★★★★★</span>
-              <span>${product.rating} (${product.reviews})</span>
-            </div>
-            <div class="price">${money(product.price)}</div>
-            <button class="btn-add" onclick="addToCart('${product.sku}', '${product.name}', ${product.price})">
-              ${currentLang === 'en' ? 'Add to Cart' : 'В корзину'}
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // Filter buttons
-    $('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        $('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = btn.getAttribute('data-filter');
-        renderProducts();
-      });
-    });
-
-    // ==================== CART ====================
+    // Add to cart
     function addToCart(sku, name, price) {
       if (!cart[sku]) {
         cart[sku] = { name, price, qty: 0 };
@@ -1728,7 +1144,7 @@
       // Show feedback
       const btn = event.target;
       const originalText = btn.textContent;
-      btn.textContent = '✓ ' + (currentLang === 'en' ? 'Added!' : 'Добавлено!');
+      btn.textContent = '✓ Added!';
       btn.style.background = '#2d9b6a';
       
       setTimeout(() => {
@@ -1737,6 +1153,29 @@
       }, 1500);
     }
 
+    // Update quantity
+    function updateQty(sku, change) {
+      if (!cart[sku]) return;
+      cart[sku].qty += change;
+      if (cart[sku].qty <= 0) {
+        delete cart[sku];
+      }
+      saveCart();
+    }
+
+    // Remove item
+    function removeItem(sku) {
+      delete cart[sku];
+      saveCart();
+    }
+
+    // Save cart
+    function saveCart() {
+      localStorage.setItem('bakery_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    // Update cart UI
     function updateCartUI() {
       const count = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
       const total = Object.values(cart).reduce((sum, item) => sum + (item.qty * item.price), 0);
@@ -1750,7 +1189,7 @@
         cartItems.innerHTML = `
           <div class="empty-cart">
             <div class="empty-cart-icon">🧺</div>
-            <p>${currentLang === 'en' ? 'Your cart is empty' : 'Ваша корзина пуста'}</p>
+            <p>Your cart is empty</p>
           </div>
         `;
         return;
@@ -1761,40 +1200,217 @@
           <div class="cart-item-image">🍞</div>
           <div class="cart-item-details">
             <h4>${item.name}</h4>
-            <p class="price">${money(item.price)} ${currentLang === 'en' ? 'each' : 'за шт'}</p>
+            <p>${money(item.price)} each</p>
           </div>
           <div class="cart-item-actions">
             <button class="qty-btn" onclick="updateQty('${sku}', -1)">−</button>
             <div class="qty-display">${item.qty}</div>
             <button class="qty-btn" onclick="updateQty('${sku}', 1)">+</button>
-            <button class="remove-btn" onclick="removeItem('${sku}')">
-              ${currentLang === 'en' ? '✕ Remove' : '✕ Удалить'}
-            </button>
+            <button class="remove-btn" onclick="removeItem('${sku}')">Remove</button>
           </div>
         </div>
       `).join('');
     }
 
-    function updateQty(sku, change) {
-      if (!cart[sku]) return;
-      
-      cart[sku].qty += change;
-      
-      if (cart[sku].qty <= 0) {
-        delete cart[sku];
+    // Show checkout form
+    function showCheckout() {
+      if (Object.keys(cart).length === 0) {
+        alert('Your cart is empty!');
+        return;
       }
+
+      const total = Object.values(cart).reduce((sum, item) => sum + (item.qty * item.price), 0);
       
+      $('#modalTitle').textContent = 'Checkout';
+      $('#modalBody').innerHTML = `
+        <div class="order-summary">
+          <h4>Order Summary</h4>
+          ${Object.values(cart).map(item => `
+            <div class="order-item">
+              <span>${item.name} × ${item.qty}</span>
+              <span>${money(item.price * item.qty)}</span>
+            </div>
+          `).join('')}
+          <div class="order-item" style="border-top: 2px solid var(--primary); margin-top: 1rem; padding-top: 1rem; font-weight: bold;">
+            <span>Total</span>
+            <span>${money(total)}</span>
+          </div>
+        </div>
+
+        <div class="payment-info">
+          <strong>💵 Payment Method: Cash Only</strong>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem;">Pay when you receive your order. We'll expand payment options soon!</p>
+        </div>
+
+        <form class="checkout-form" id="checkoutForm">
+          <div class="form-group">
+            <label for="customerName">Full Name *</label>
+            <input type="text" id="customerName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="customerEmail">Email *</label>
+            <input type="email" id="customerEmail" required placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">Phone Number *</label>
+            <input type="tel" id="customerPhone" required placeholder="+1 (555) 123-4567">
+          </div>
+
+          <div class="form-group">
+            <label for="deliveryAddress">Delivery Address *</label>
+            <textarea id="deliveryAddress" rows="3" required placeholder="123 Main St, Philadelphia, PA"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="orderNotes">Order Notes (Optional)</label>
+            <textarea id="orderNotes" rows="2" placeholder="Any special instructions?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Confirm Order (${money(total)})
+          </button>
+        </form>
+      `;
+
+      $('#checkoutForm').addEventListener('submit', handleCheckout);
+    }
+
+    // Handle checkout
+    function handleCheckout(e) {
+      e.preventDefault();
+
+      const customerName = $('#customerName').value;
+      const customerEmail = $('#customerEmail').value;
+      const customerPhone = $('#customerPhone').value;
+      const deliveryAddress = $('#deliveryAddress').value;
+      const orderNotes = $('#orderNotes').value;
+      const total = Object.values(cart).reduce((sum, item) => sum + (item.qty * item.price), 0);
+      
+      const orderId = 'FL' + Date.now();
+      const orderDate = new Date().toLocaleString();
+
+      // Simulate sending emails
+      console.log('=== EMAIL TO CUSTOMER ===');
+      console.log(`To: ${customerEmail}`);
+      console.log(`Subject: Order Confirmation - ${orderId}`);
+      console.log(`
+Dear ${customerName},
+
+Thank you for your order from FreshLoaf Bakery!
+
+ORDER DETAILS:
+Order ID: ${orderId}
+Date: ${orderDate}
+
+ITEMS:
+${Object.values(cart).map(item => `- ${item.name} × ${item.qty} = ${money(item.price * item.qty)}`).join('\n')}
+
+TOTAL: ${money(total)}
+Payment: Cash on Delivery
+
+DELIVERY ADDRESS:
+${deliveryAddress}
+
+${orderNotes ? `NOTES: ${orderNotes}` : ''}
+
+To cancel your order, please reply to this email or call us at (555) 123-4567 within 2 hours.
+
+Thank you for choosing FreshLoaf Bakery!
+
+Best regards,
+FreshLoaf Team
+      `);
+
+      console.log('\n=== EMAIL TO BAKERY ===');
+      console.log('To: orders@freshloaf.com');
+      console.log(`Subject: New Order - ${orderId}`);
+      console.log(`
+NEW ORDER RECEIVED
+
+Order ID: ${orderId}
+Date: ${orderDate}
+
+CUSTOMER:
+Name: ${customerName}
+Email: ${customerEmail}
+Phone: ${customerPhone}
+
+ITEMS:
+${Object.values(cart).map(item => `- ${item.name} × ${item.qty} = ${money(item.price * item.qty)}`).join('\n')}
+
+TOTAL: ${money(total)}
+Payment: Cash on Delivery
+
+DELIVERY ADDRESS:
+${deliveryAddress}
+
+${orderNotes ? `CUSTOMER NOTES: ${orderNotes}` : ''}
+      `);
+
+      // Show success message
+      $('#modalTitle').textContent = 'Order Confirmed! ✓';
+      $('#modalBody').innerHTML = `
+        <div class="success-message">
+          <h3 style="margin-bottom: 0.5rem;">🎉 Order Placed Successfully!</h3>
+          <p>Order ID: ${orderId}</p>
+        </div>
+
+        <div class="order-summary">
+          <h4>Order Details</h4>
+          <p><strong>Name:</strong> ${customerName}</p>
+          <p><strong>Email:</strong> ${customerEmail}</p>
+          <p><strong>Phone:</strong> ${customerPhone}</p>
+          <p style="margin-top: 1rem;"><strong>Delivery Address:</strong><br>${deliveryAddress}</p>
+          
+          <h4 style="margin-top: 1.5rem;">Items Ordered:</h4>
+          ${Object.values(cart).map(item => `
+            <div class="order-item">
+              <span>${item.name} × ${item.qty}</span>
+              <span>${money(item.price * item.qty)}</span>
+            </div>
+          `).join('')}
+          <div class="order-item" style="border-top: 2px solid var(--primary); margin-top: 1rem; padding-top: 1rem; font-weight: bold;">
+            <span>Total</span>
+            <span>${money(total)}</span>
+          </div>
+        </div>
+
+        <div class="payment-info">
+          <p>💵 <strong>Payment Method:</strong> Cash on Delivery</p>
+          <p style="margin-top: 0.5rem;">📧 <strong>Confirmation emails sent to:</strong></p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li>${customerEmail} (Receipt & Cancellation Link)</li>
+            <li>orders@freshloaf.com (Bakery Notification)</li>
+          </ul>
+        </div>
+
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-light);">
+          To cancel your order, check your email for the cancellation link or call us at (555) 123-4567.
+        </p>
+
+        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="closeModalAndReset()">
+          Close
+        </button>
+      `;
+
+      // Clear cart
+      cart = {};
       saveCart();
     }
 
-    function removeItem(sku) {
-      delete cart[sku];
-      saveCart();
+    // Close modal and reset
+    function closeModalAndReset() {
+      $('#cartModal').classList.remove('show');
+      $('#modalTitle').textContent = 'Your Cart';
+      updateCartUI();
     }
 
-    // Cart modal
+    // Event listeners
     $('#openCart').addEventListener('click', () => {
       $('#cartModal').classList.add('show');
+      $('#modalTitle').textContent = 'Your Cart';
       updateCartUI();
     });
 
@@ -1806,80 +1422,17 @@
       $('#cartModal').classList.remove('show');
     });
 
+    $('#checkoutBtn').addEventListener('click', showCheckout);
+
     $('#cartModal').addEventListener('click', (e) => {
       if (e.target === $('#cartModal')) {
         $('#cartModal').classList.remove('show');
       }
     });
 
-    $('#checkoutBtn').addEventListener('click', () => {
-      if (Object.keys(cart).length === 0) {
-        alert(currentLang === 'en' ? 'Your cart is empty!' : 'Ваша корзина пуста!');
-        return;
-      }
-      
-      alert(currentLang === 'en' 
-        ? 'Checkout functionality would redirect to payment page. Demo only.' 
-        : 'Оформление заказа перенаправит на страницу оплаты. Это демо.');
-      
-      // Clear cart for demo
-      cart = {};
-      saveCart();
-      $('#cartModal').classList.remove('show');
-    });
+    // Filter functionality removed as requested
 
-    // ==================== FORMS ====================
-    $('#newsletterForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = $('#newsletterEmail').value.trim();
-      
-      if (!email || !email.includes('@')) {
-        alert(currentLang === 'en' ? 'Please enter a valid email.' : 'Введите корректный email.');
-        return;
-      }
-      
-      alert(currentLang === 'en' 
-        ? `Thank you for subscribing with ${email}!` 
-        : `Спасибо за подписку ${email}!`);
-      
-      $('#newsletterEmail').value = '';
-    });
-
-    $('#contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const name = $('#contactName').value.trim();
-      const email = $('#contactEmail').value.trim();
-      const message = $('#contactMessage').value.trim();
-      
-      if (!name || !email || !message) {
-        alert(currentLang === 'en' ? 'Please fill in all fields.' : 'Заполните все поля.');
-        return;
-      }
-      
-      alert(currentLang === 'en' 
-        ? `Thank you, ${name}! Your message has been received.` 
-        : `Спасибо, ${name}! Ваше сообщение получено.`);
-      
-      $('#contactForm').reset();
-    });
-
-    // ==================== HEADER SCROLL ====================
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      const header = $('#header');
-      
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        header.classList.add('hidden');
-      } else {
-        header.classList.remove('hidden');
-      }
-      
-      lastScroll = currentScroll;
-    });
-
-    // ==================== SMOOTH SCROLL ====================
+    // Smooth scrolling
     $('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1894,68 +1447,38 @@
       });
     });
 
-    // ==================== MOBILE MENU ====================
+    // Mobile menu
     $('#mobileMenuBtn').addEventListener('click', () => {
       const navLinks = $('.nav-links');
       navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
     });
 
-    // ==================== FEATURED ADD BUTTONS ====================
-    $('.featured-card .btn-add').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const sku = btn.getAttribute('data-sku');
-        const name = btn.getAttribute('data-name');
-        const price = parseFloat(btn.getAttribute('data-price'));
-        addToCart(sku, name, price);
-      });
-    });
-
-    // ==================== INITIALIZE ====================
-    document.getElementById('year').textContent = new Date().getFullYear();
-    renderProducts();
-    updateCartUI();
-    applyTranslations();
-
-    // Add keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      // 'C' key to toggle cart
-      if (e.key === 'c' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-        $('#cartModal').classList.toggle('show');
-        if ($('#cartModal').classList.contains('show')) {
-          updateCartUI();
-        }
+    // Contact form
+    $('#contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = $('#contactName').value;
+      const email = $('#contactEmail').value;
+      const message = $('#contactMessage').value;
+      
+      if (!name || !email || !message) {
+        alert('Please fill in all fields.');
+        return;
       }
       
-      // 'ESC' key to close cart
-      if (e.key === 'Escape') {
-        $('#cartModal').classList.remove('show');
-      }
+      alert(`Thank you, ${name}! Your message has been received. We'll get back to you soon.`);
+      
+      $('#contactForm').reset();
     });
 
-    // Animate elements on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe elements with fade-in class
-    setTimeout(() => {
-      $('.fade-in').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-      });
-    }, 100);
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing...');
+      updateCartUI();
+    });
+    
+    // Also run immediately in case DOM is already loaded
+    updateCartUI();
   </script>
 </body>
 </html>
